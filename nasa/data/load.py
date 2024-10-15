@@ -10,7 +10,7 @@ healthfacilites_mapping = {
     "healthcare": "healthcare",
     "amenity": "amenity",
     "operatorty": "operatorty",
-    "geom": "POINT",
+    "geom": "MULTIPOINT",
 }
 
 def import_data(verbose=True):

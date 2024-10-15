@@ -7,7 +7,12 @@ from  .models import UserProfile
 class UserForm(UserCreationForm):
     age = forms.IntegerField(
         required=False,
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter your age'})
+        widget=forms.NumberInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your age'
+                }
+            )
     )
     gender = forms.ChoiceField(
         choices=UserProfile.GENDER_CHOICES,
@@ -15,7 +20,12 @@ class UserForm(UserCreationForm):
     )
     location = forms.CharField(
         required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your location'})
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your location'
+                }
+            )
     )
     health_condition = forms.ChoiceField(
         choices=UserProfile.HEALTH_CONDITION_CHOICES,
@@ -23,11 +33,21 @@ class UserForm(UserCreationForm):
     )
     phone = forms.CharField(
         required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your phone number'})
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your phone number'
+                }
+            )
     )
     next_of_kin = forms.CharField(
         required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Next of kin phone number'})
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Next of kin phone number'
+                }
+            )
     )
 
     class Meta(UserCreationForm.Meta):
@@ -48,3 +68,26 @@ class UserForm(UserCreationForm):
                 next_of_kin=self.cleaned_data['next_of_kin']
             )
         return user
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = [
+                "age",
+                "gender",
+                "location",
+                "health_condition",
+                "email",
+                "phone",
+                "next_of_kin"
+                ]
+        labels = {
+                "age": "Age",
+                "gender": "Gender",
+                "location": "Location",
+                "health_condition": "Health Condition",
+                "email": "Email",
+                "phone": "Phone",
+                "next_of_kin": "Next of Kin"
+                }

@@ -9,26 +9,28 @@ from .models import HealthFacilities
 
 
 def map_view(request):
-    m = folium.Map(location=[1.2921, 36.8219], zoom_start=6)
+    m = folium.Map(
+            location=[0.0, 37.0],
+            zoom_start=6
+            )
 
-    for facility in HealthFacilities.objects.all():
-        folium.CircleMarker(
+    health_facilities = HealthFacilities.objects.all()
+
+    for facility in health_facilities:
+        print(f"Facility: {facility.name}, Location:\
+                ({facility.geom.y}, {facility.geom.x})")
+        folium.Marker(
                 location=[facility.geom.y, facility.geom.x],
-                radius=5,
-                color='blue',
-                fill=True,
-                fill_color='blue',
-                fill_opacity=0.6,
-                popup=f"{facility.name}<br>{facility.healthcare}"
+                popup="H"
                 ).add_to(m)
 
     map_html = m._repr_html_()
 
-    return render(request, 'map.html', {'map': map_html})
+    return render(request, 'map.html', {'map_html': map_html})
 
 
 def search_health_facilities(request):
-    geolocator = Nomination(user_agent="health_facility")
+    geolocator = Nominatim(user_agent="health_facility")
     query = request.GET.get('query', '')
     area = request.GET.get('area', '')
     user_location = None

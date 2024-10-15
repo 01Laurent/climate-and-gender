@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>User Profile</h2>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">{{ user.username }}'s Profile</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Age:</strong> {{ user.userprofile.age }}</li>
+                <li class="list-group-item"><strong>Gender:</strong> {{ user.userprofile.get_gender_display }}</li>
+                <li class="list-group-item"><strong>Location:</strong> {{ user.userprofile.location }}</li>
+                <li class="list-group-item"><strong>Health Condition:</strong> {{ user.userprofile.get_health_condition_display }}</li>
+                <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+                <li class="list-group-item"><strong>Phone:</strong> {{ user.userprofile.phone }}</li>
+                <li class="list-group-item"><strong>Next of Kin:</strong> {{ user.userprofile.next_of_kin }}</li>
+            </ul>
+        </div>
+    </div>
+    <!-- <a href="{url 'edit_profile' %}" class="btn btn-primary mt-3">Edit Profile</a> -->
+</div>
+{% endblock %}

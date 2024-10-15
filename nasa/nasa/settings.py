@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'genderclimate',
     'healthfacilities',
 ]
@@ -129,6 +130,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LEAFLET_CONFIG = {
+        "DEFAULT_CENTER": (-1.286, 36.817),
+        "DEFAULT_ZOOM": 11,
+        "MIN_ZOOM": 3,
+        "MAX_ZOOM": 20,
+        "SCALE": "both",
+        "ATTRIBUTION_PREFIX": "Health Facilities",
+        }
+
+SPECTACULAR_SETTINGS = {
+        "TITLE": "Health",
+        "DESCRIPTION": "Health Facility near you",
+        "VERSION": "1.0.0",
+        }
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = 'home'

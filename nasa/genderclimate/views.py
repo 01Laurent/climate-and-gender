@@ -40,3 +40,8 @@ def search_area(request):
     area = request.GET.get('area', '')
 
     return redirect(f'/healthfacilities/search/?query={query}&area={area}')
+
+
+@login_required
+def profile(request):
+    return render(request, 'profile.html', {'user': request.user})
